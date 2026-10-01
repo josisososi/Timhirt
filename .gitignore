@@ -40,3 +40,7 @@ desktop.ini
 /source-texts/
 *.pdf
 __pycache__/
+
+# Generated scripture assets (see scripts/export_scripture.py)
+/assets/scripture/
+/src/scripture/generated.ts

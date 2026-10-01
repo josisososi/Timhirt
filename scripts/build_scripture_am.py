@@ -80,6 +80,20 @@ def clean(text):
     return JUNK_LEAD.sub("", text).strip()
 
 
+def starts_verse(line):
+    """A line that opens with a number followed by real Amharic words."""
+    v = LEAD_DIGITS.match(line)
+    return bool(v) and len(re.findall(r"[ሀ-ቈ]", v.group(2))) >= 2
+
+
+def corroborated(lines, pos, n):
+    """True if the next verse after line `pos` is numbered n+1 (so a jump to n is genuine)."""
+    for x in lines[pos + 1 : pos + 14]:
+        if starts_verse(x):
+            return near(LEAD_DIGITS.match(x).group(1), n + 1)
+    return False
+
+
 def parse_segment(lines):
     """Lines -> {chapter: {verse: text}}, anomalies.
 
@@ -97,6 +111,8 @@ def parse_segment(lines):
 
     for pos, ln in enumerate(lines):
         m = CHAPTER_LINE.match(ln)
+        if m and not m.group(1) and ln.strip().startswith("መዝሙር") and "።" in ln:
+            m = None  # the last word of a psalm title ("...of David."), not a new psalm
         if m:
             digits = m.group(1) or ""
             expected = 1 if ch is None else ch + 1
@@ -132,10 +148,12 @@ def parse_segment(lines):
             n = int(digits)
             if near(digits, e):
                 pass
-            elif e < n <= e + 3:
+            elif e < n <= e + 3 and corroborated(lines, pos, n):
+                # the next verse is numbered n+1, so the lines before this one really ran together
                 anomalies.append(f"verse gap {ch}:{vs}->{n}")
                 e = n
             else:
+                # a lone misread digit: keep counting from the sequence
                 anomalies.append(f"verse {ch}:{e} number misread as {digits}")
             flush()
             vs, label, buf = e, str(e), [clean(rest)]
@@ -149,7 +167,7 @@ def parse_segment(lines):
                 continue
             if vs == 0:
                 ahead = lines[pos + 1 : pos + 4]
-                if any(re.match(r"^\s*1(?!\d)", x) for x in ahead):
+                if any(starts_verse(x) for x in ahead):
                     titles.setdefault(ch, []).append(clean(ln))  # e.g. a Psalm title before verse 1
                     continue
                 vs, label, buf = 1, "1", [clean(ln)]  # first line after a chapter marker is verse 1

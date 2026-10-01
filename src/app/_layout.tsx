@@ -96,6 +96,7 @@ export default function RootLayout() {
         <Tabs.Screen name="study" options={{ title: t('modes.study') }} />
         <Tabs.Screen name="devotion" options={{ title: t('modes.devotion') }} />
         <Tabs.Screen name="open" options={{ title: t('modes.open') }} />
+        <Tabs.Screen name="read" options={{ title: t('modes.read') }} />
       </Tabs>
     </>
   );
