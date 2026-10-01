@@ -5,7 +5,9 @@ Ethiopian Orthodox Tewahedo Bible study app. Three modes: **Study**, **Devotion*
 ## Stack
 - Expo (React Native + web), TypeScript, Expo Router
 - Supabase: auth, Postgres, row-level security, Edge Functions
-- Local SQLite (IndexedDB on web) as the source of truth on-device; an outbox queue syncs to Supabase when online
+- Local storage is the source of truth on-device: SQLite on iOS/Android (`src/db/driver.ts`), IndexedDB on web (`src/db/driver.web.ts`), behind one `Driver` interface. Every write also marks the record in an `outbox` table; the sync phase pushes those to Supabase when online.
+- Synced tables use client UUIDs, `updated_at` and soft deletes (`deleted_at`). Never hard-delete synced rows.
+- Do not use expo-sqlite on web: its worker needs SharedArrayBuffer/COEP headers and fails to bundle in Expo's dev server.
 - AI calls go through a Supabase Edge Function only. The Anthropic key never ships in client code.
 
 ## Canon rule (non-negotiable)
@@ -42,4 +44,4 @@ assets/        fonts, icons
 ```
 
 ## Status
-Phase 0 (foundation) and Phase 1 (Expo scaffold) done. See the migration plan: Expo scaffold, local data layer, scripture import, Supabase schema + RLS, sync, AI edge function, features, polish.
+Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. See the migration plan: Expo scaffold, local data layer, scripture import, Supabase schema + RLS, sync, AI edge function, features, polish.

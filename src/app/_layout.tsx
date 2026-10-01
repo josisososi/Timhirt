@@ -8,12 +8,13 @@ import { useFonts } from 'expo-font';
 import { Tabs } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { CrossIcon } from '@/components/CrossIcon';
-import '@/i18n';
+import { settings } from '@/db';
+import i18n, { type Language } from '@/i18n';
 import { colors, fonts, spacing } from '@/theme';
 
 SplashScreen.preventAutoHideAsync();
@@ -33,12 +34,15 @@ function HeaderTitle() {
 
 function LanguageToggle() {
   const { t, i18n } = useTranslation();
-  const next = i18n.language === 'am' ? 'en' : 'am';
+  const next: Language = i18n.language === 'am' ? 'en' : 'am';
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={t('language.label')}
-      onPress={() => i18n.changeLanguage(next)}
+      onPress={() => {
+        i18n.changeLanguage(next);
+        settings.set('language', next).catch(console.warn);
+      }}
       style={styles.langBtn}>
       <Text style={styles.langText}>{t('language.switchTo')}</Text>
     </Pressable>
@@ -55,11 +59,22 @@ export default function RootLayout() {
     NotoSerifEthiopic_400Regular,
   });
 
+  // Restore the saved language before first paint so it doesn't flash.
+  const [prefsReady, setPrefsReady] = useState(false);
   useEffect(() => {
-    if (loaded) SplashScreen.hideAsync();
-  }, [loaded]);
+    settings
+      .get('language')
+      .then((saved) => (saved === 'am' || saved === 'en' ? i18n.changeLanguage(saved) : undefined))
+      .catch(console.warn)
+      .finally(() => setPrefsReady(true));
+  }, []);
 
-  if (!loaded) return null;
+  const ready = loaded && prefsReady;
+  useEffect(() => {
+    if (ready) SplashScreen.hideAsync();
+  }, [ready]);
+
+  if (!ready) return null;
 
   return (
     <>
