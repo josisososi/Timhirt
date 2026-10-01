@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timhirt — Bible Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:      #C9A84C;
+    --deep-red:  #7B1F1F;
+    --parchment: #F5EDD8;
+    --ink:       #1A1108;
+    --ash:       #3D2B1F;
+    --mist:      #EDE4CC;
+    --accent:    #8B3A3A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    font-family: 'Inter', sans-serif;
+    color: var(--parchment);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* — Header — */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 28px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    background: rgba(26,17,8,0.95);
+    flex-shrink: 0;
+  }
+
+  .cross-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+  }
+
+  header p {
+    font-size: 0.7rem;
+    color: rgba(245,237,216,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .mode-toggle {
+    margin-left: auto;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .save-btn {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: rgba(201,168,76,0.7);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .save-btn:hover {
+    background: rgba(201,168,76,0.12);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .save-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* Toast notification */
+  #toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(40,28,14,0.97);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--parchment);
+    font-size: 0.78rem;
+    padding: 10px 20px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 100;
+  }
+
+  #toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mode-btn {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: rgba(245,237,216,0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .mode-btn.active {
+    background: rgba(201,168,76,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* — Chat area — */
+  #chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    scroll-behavior: smooth;
+  }
+
+  #chat::-webkit-scrollbar { width: 4px; }
+  #chat::-webkit-scrollbar-track { background: transparent; }
+  #chat::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 2px; }
+
+  .bubble {
+    max-width: 720px;
+    line-height: 1.7;
+    font-size: 0.93rem;
+  }
+
+  .bubble.user {
+    align-self: flex-end;
+    background: rgba(123,31,31,0.35);
+    border: 1px solid rgba(139,58,58,0.4);
+    padding: 13px 18px;
+    border-radius: 3px 3px 0 3px;
+    color: var(--parchment);
+  }
+
+  .bubble.agent {
+    align-self: flex-start;
+    width: 100%;
+    max-width: 760px;
+  }
+
+  .agent-inner {
+    background: rgba(245,237,216,0.05);
+    border-left: 2px solid var(--gold);
+    padding: 18px 22px;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .agent-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  .agent-inner p { margin-bottom: 10px; color: rgba(245,237,216,0.88); }
+  .agent-inner p:last-child { margin-bottom: 0; }
+
+  .scripture-block {
+    margin: 14px 0;
+    padding: 14px 18px;
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+  }
+
+  .scripture-block .ref {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .scripture-block .verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--mist);
+  }
+
+  .question-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .chip {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: rgba(245,237,216,0.65);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    padding: 7px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+
+  .chip:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  /* — Typing indicator — */
+  .typing {
+    display: none;
+    align-self: flex-start;
+    gap: 5px;
+    padding: 14px 20px;
+    align-items: center;
+  }
+
+  .typing.visible { display: flex; }
+
+  .dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: pulse 1.2s infinite;
+  }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+
+  /* — Input area — */
+  footer {
+    padding: 16px 20px 20px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    background: rgba(26,17,8,0.97);
+    flex-shrink: 0;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  textarea {
+    flex: 1;
+    background: rgba(245,237,216,0.05);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--parchment);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    padding: 12px 16px;
+    border-radius: 3px;
+    resize: none;
+    outline: none;
+    line-height: 1.5;
+    min-height: 46px;
+    max-height: 140px;
+    transition: border-color 0.2s;
+  }
+
+  textarea::placeholder { color: rgba(245,237,216,0.3); }
+  textarea:focus { border-color: rgba(201,168,76,0.6); }
+
+  #sendBtn {
+    background: var(--deep-red);
+    border: none;
+    color: var(--parchment);
+    width: 46px;
+    height: 46px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  #sendBtn:hover { background: var(--accent); }
+  #sendBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .footer-hint {
+    text-align: center;
+    font-size: 0.62rem;
+    color: rgba(245,237,216,0.2);
+    letter-spacing: 0.08em;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  /* Ethiopian cross SVG watermark */
+  .watermark {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    opacity: 0.03;
+    pointer-events: none;
+    width: 120px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="cross-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Ethiopian Coptic Cross simplified -->
+    <rect x="14" y="2" width="4" height="28" fill="#C9A84C"/>
+    <rect x="2" y="14" width="28" height="4" fill="#C9A84C"/>
+    <rect x="11" y="11" width="2" height="2" fill="#C9A84C"/>
+    <rect x="19" y="11" width="2" height="2" fill="#C9A84C"/>
+    <rect x="11" y="19" width="2" height="2" fill="#C9A84C"/>
+    <rect x="19" y="19" width="2" height="2" fill="#C9A84C"/>
+    <rect x="8" y="8" width="2" height="2" fill="#C9A84C"/>
+    <rect x="22" y="8" width="2" height="2" fill="#C9A84C"/>
+    <rect x="8" y="22" width="2" height="2" fill="#C9A84C"/>
+    <rect x="22" y="22" width="2" height="2" fill="#C9A84C"/>
+  </svg>
+  <div>
+    <h1>Timhirt</h1>
+    <p>Scripture Study · Ethiopian Orthodox</p>
+  </div>
+  <div class="mode-toggle">
+    <button class="mode-btn active" onclick="setMode('study')" id="btn-study">Study</button>
+    <button class="mode-btn" onclick="setMode('devotion')" id="btn-devotion">Devotion</button>
+    <button class="mode-btn" onclick="setMode('free')" id="btn-free">Open</button>
+    <button class="save-btn" id="saveBtn" onclick="saveToGoogleDrive()" title="Save session to Google Drive">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+        <polyline points="7 3 7 8 15 8"></polyline>
+      </svg>
+      Save
+    </button>
+  </div>
+</header>
+<div id="toast"></div>
+
+<div id="chat">
+  <!-- messages injected here -->
+</div>
+
+<div class="typing" id="typing">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+
+<!-- Ethiopian cross watermark -->
+<svg class="watermark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect x="45" y="5" width="10" height="90" fill="white"/>
+  <rect x="5" y="45" width="90" height="10" fill="white"/>
+  <rect x="35" y="35" width="6" height="6" fill="white"/>
+  <rect x="59" y="35" width="6" height="6" fill="white"/>
+  <rect x="35" y="59" width="6" height="6" fill="white"/>
+  <rect x="59" y="59" width="6" height="6" fill="white"/>
+</svg>
+
+<footer>
+  <div class="input-row">
+    <textarea id="userInput" placeholder="Ask about a passage, a theme, or bring what's on your heart..." rows="1"></textarea>
+    <button id="sendBtn" onclick="sendMessage()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+  <p class="footer-hint">Timhirt means "teaching" in Amharic</p>
+</footer>
+
+<script>
+  // ── State ──────────────────────────────────────────────
+  let mode = 'study';
+  let conversationHistory = [];
+  let isLoading = false;
+
+  const SYSTEM_PROMPTS = {
+    study: `You are Timhirt, a deeply knowledgeable Bible study companion rooted in the Ethiopian Orthodox Tewahedo tradition — one of the oldest continuous Christian traditions in the world, with a biblical canon that includes books like Enoch, Jubilees, and the full deuterocanon.
+
+Your role is to study Scripture with Joseph, passage by passage, with depth and reverence. You:
+- Open each study by asking what passage or theme Joseph wants to explore, or suggest one relevant to Ethiopian liturgical seasons
+- Read the text carefully, then unpack it: historical context, theological weight, patristic commentary (especially Ethiopian and Alexandrian fathers like St. Yared, Abba Salama, Cyril of Alexandria), and practical meaning
+- Reference the Ge'ez tradition and the Kebra Nagast where relevant but don't overdo it
+- Connect passages to Joseph's life: living with integrity, walking in abundance not scarcity, building something with purpose
+- Ask one probing question per response to push deeper understanding
+- Format: when quoting scripture, use the structure: [Reference] then the verse text
+- Be direct, warm, and spiritually serious — not performatively religious. Speak like a wise teacher and honest friend.
+- Keep responses focused — don't overwhelm. Go deep on one thing rather than shallow on many.
+- End most responses with a single reflection question or an invitation to go deeper.`,
+
+    devotion: `You are Timhirt, a devotional companion in the Ethiopian Orthodox Tewahedo tradition.
+
+Joseph is coming to you for a moment of spiritual grounding — not deep study, but encounter with God through Scripture and prayer.
+
+Your role:
+- Begin with a short scripture that speaks to where Joseph is
+- Offer a brief, honest reflection — 3-5 sentences that go somewhere real, not generic
+- End with a short prayer in the spirit of Ethiopian Orthodox prayer (addressed to God through Christ, invoking the Holy Spirit, with reverence for Mary as Theotokos where fitting)
+- Keep it under 250 words total
+- Speak from abundance, not fear. God's presence is given, not earned.
+- Occasionally reference the Ethiopian church calendar if a feast or fast is near`,
+
+    free: `You are Timhirt, a spiritually grounded conversation partner rooted in the Ethiopian Orthodox Tewahedo Christian tradition.
+
+Joseph can bring anything — questions about faith, doubts, life decisions, theology, the intersection of his work and his faith. Your job is to think with him, not just answer at him.
+
+You:
+- Engage honestly, including with hard questions about faith, doubt, or tension
+- Bring Scripture in naturally, not artificially
+- Hold the Ethiopian Orthodox tradition with pride and nuance — its age, its independence, its distinct theology (miaphysite Christology, the full 81-book canon, the Ark of the Covenant heritage)
+- Think out loud when the question deserves it
+- Don't pretend certainty where there isn't any
+- Connect faith to Joseph's actual life — trading, building a business, becoming who God made him to be
+- Be a peer in the conversation, not a religious authority performing piety`
+  };
+
+  // ── Mode toggle ────────────────────────────────────────
+  function setMode(m) {
+    mode = m;
+    ['study','devotion','free'].forEach(id => {
+      document.getElementById('btn-' + id).classList.toggle('active', id === m);
+    });
+    // Reset and open with a mode-appropriate greeting
+    conversationHistory = [];
+    document.getElementById('chat').innerHTML = '';
+    const greetings = {
+      study: null, // trigger with opening message from agent
+      devotion: null,
+      free: null
+    };
+    openingMessage();
+  }
+
+  // ── Opening message ────────────────────────────────────
+  async function openingMessage() {
+    const openers = {
+      study: "Selam, Joseph. What passage or theme are we bringing into study today — or would you like me to suggest something rooted in where we are in the liturgical season?",
+      devotion: null, // let the AI generate a fresh one
+      free: "Selam. Bring whatever's on your mind — Scripture, a question, something you're wrestling with. I'm here."
+    };
+
+    if (mode === 'devotion') {
+      // let AI generate a fresh daily devotion
+      await streamAgentResponse("Begin with a short, powerful opening devotion for today. Pick a passage that speaks to someone building their life with purpose and faith.");
+    } else {
+      appendAgentBubble(openers[mode]);
+    }
+  }
+
+  // ── Append bubbles ─────────────────────────────────────
+  function appendUserBubble(text) {
+    const chat = document.getElementById('chat');
+    const div = document.createElement('div');
+    div.className = 'bubble user';
+    div.textContent = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function appendAgentBubble(text) {
+    const chat = document.getElementById('chat');
+    const div = document.createElement('div');
+    div.className = 'bubble agent';
+
+    const inner = document.createElement('div');
+    inner.className = 'agent-inner';
+
+    const label = document.createElement('div');
+    label.className = 'agent-label';
+    label.textContent = 'Timhirt';
+    inner.appendChild(label);
+
+    // Parse scripture blocks [REF] verse
+    const formatted = formatResponse(text);
+    inner.innerHTML += formatted;
+
+    div.appendChild(inner);
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+    return inner;
+  }
+
+  function formatResponse(text) {
+    // Convert [Book X:Y] quoted text into scripture blocks
+    let html = text.replace(
+      /\[([^\]]+)\]\s*[""]?([^"\n\[]+)[""]?/g,
+      (match, ref, verse) => `
+        <div class="scripture-block">
+          <span class="ref">${ref}</span>
+          <span class="verse">${verse.trim()}</span>
+        </div>`
+    );
+
+    // Wrap paragraphs
+    const lines = html.split('\n').filter(l => l.trim());
+    return lines.map(line => {
+      if (line.includes('<div class="scripture-block">')) return line;
+      return `<p>${line}</p>`;
+    }).join('');
+  }
+
+  // ── Send message ───────────────────────────────────────
+  async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const text = input.value.trim();
+    if (!text || isLoading) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+    appendUserBubble(text);
+    conversationHistory.push({ role: 'user', content: text });
+
+    await streamAgentResponse(null);
+  }
+
+  // ── Call API ───────────────────────────────────────────
+  async function streamAgentResponse(overrideUserMessage) {
+    isLoading = true;
+    document.getElementById('sendBtn').disabled = true;
+    document.getElementById('typing').classList.add('visible');
+    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+
+    const messages = overrideUserMessage
+      ? [{ role: 'user', content: overrideUserMessage }]
+      : [...conversationHistory];
+
+    try {
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1000,
+          system: SYSTEM_PROMPTS[mode],
+          messages: messages
+        })
+      });
+
+      const data = await response.json();
+      const reply = data.content?.find(b => b.type === 'text')?.text || "I couldn't get a response. Try again.";
+
+      document.getElementById('typing').classList.remove('visible');
+      appendAgentBubble(reply);
+
+      if (!overrideUserMessage) {
+        conversationHistory.push({ role: 'assistant', content: reply });
+      } else {
+        conversationHistory.push({ role: 'assistant', content: reply });
+      }
+
+    } catch (err) {
+      document.getElementById('typing').classList.remove('visible');
+      appendAgentBubble("Something went wrong connecting to the server. Check your connection and try again.");
+      console.error(err);
+    }
+
+    isLoading = false;
+    document.getElementById('sendBtn').disabled = false;
+  }
+
+  // ── Auto-resize textarea ───────────────────────────────
+  document.getElementById('userInput').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 140) + 'px';
+  });
+
+  document.getElementById('userInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // ── Init ───────────────────────────────────────────────
+  openingMessage();
+
+  // ── Google Drive Save ──────────────────────────────────
+  // SETUP: Replace with your own Google OAuth Client ID
+  // Get one free at: console.cloud.google.com → APIs & Services → Credentials
+  // Enable: Google Drive API + Google Docs API
+  const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE';
+  const GOOGLE_SCOPES = 'https://www.googleapis.com/auth/drive.file';
+
+  let googleAccessToken = null;
+
+  function showToast(msg, duration = 3000) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), duration);
+  }
+
+  function buildTranscript() {
+    const messages = conversationHistory;
+    if (!messages.length) return null;
+
+    const date = new Date().toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    const modeLabel = { study: 'Bible Study', devotion: 'Devotion', free: 'Open Conversation' }[mode];
+    let text = `TIMHIRT — ${modeLabel.toUpperCase()}\n${date}\n${'─'.repeat(50)}\n\n`;
+
+    messages.forEach(msg => {
+      if (msg.role === 'user') {
+        text += `JOSEPH:\n${msg.content}\n\n`;
+      } else {
+        // Strip HTML tags for plain text
+        const plain = msg.content.replace(/<[^>]*>/g, '').replace(/\n{3,}/g, '\n\n');
+        text += `TIMHIRT:\n${plain}\n\n${'─'.repeat(50)}\n\n`;
+      }
+    });
+
+    return text;
+  }
+
+  function signInGoogle() {
+    return new Promise((resolve, reject) => {
+      const client = google.accounts.oauth2.initTokenClient({
+        client_id: GOOGLE_CLIENT_ID,
+        scope: GOOGLE_SCOPES,
+        callback: (response) => {
+          if (response.error) reject(response.error);
+          else resolve(response.access_token);
+        }
+      });
+      client.requestAccessToken();
+    });
+  }
+
+  async function saveToGoogleDrive() {
+    const transcript = buildTranscript();
+    if (!transcript) {
+      showToast('Nothing to save yet — start a session first.');
+      return;
+    }
+
+    if (GOOGLE_CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID_HERE') {
+      showToast('⚠️ Add your Google Client ID first — see setup instructions.');
+      return;
+    }
+
+    const btn = document.getElementById('saveBtn');
+    btn.disabled = true;
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg> Saving...`;
+
+    try {
+      if (!googleAccessToken) {
+        googleAccessToken = await signInGoogle();
+      }
+
+      const date = new Date();
+      const fileName = `Timhirt — ${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+
+      // Create Google Doc
+      const metadata = {
+        name: fileName,
+        mimeType: 'application/vnd.google-apps.document'
+      };
+
+      // Upload as plain text → converts to Google Doc automatically
+      const boundary = '-------314159265358979323846';
+      const body = [
+        `--${boundary}`,
+        'Content-Type: application/json; charset=UTF-8',
+        '',
+        JSON.stringify(metadata),
+        `--${boundary}`,
+        'Content-Type: text/plain; charset=UTF-8',
+        '',
+        transcript,
+        `--${boundary}--`
+      ].join('\r\n');
+
+      const response = await fetch(
+        'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${googleAccessToken}`,
+            'Content-Type': `multipart/related; boundary="${boundary}"`,
+          },
+          body: body
+        }
+      );
+
+      if (!response.ok) {
+        const err = await response.json();
+        if (err.error?.status === 'UNAUTHENTICATED') {
+          googleAccessToken = null;
+          throw new Error('Auth expired');
+        }
+        throw new Error(err.error?.message || 'Upload failed');
+      }
+
+      const file = await response.json();
+      showToast(`✓ Saved to Google Drive: "${fileName}"`, 4000);
+
+    } catch (err) {
+      console.error(err);
+      if (err.message === 'Auth expired') {
+        googleAccessToken = null;
+        showToast('Session expired — tap Save again to re-sign in.');
+      } else {
+        showToast('Save failed. Check console for details.');
+      }
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Save`;
+  }
+</script>
+
+<!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async></script>
+</body>
+</html>
