@@ -44,7 +44,7 @@ assets/        fonts, icons
 ```
 
 ## Status
-Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. Phase 3 (scripture) in progress.
+Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. Phase 3 (scripture reader) done. Phase 4 (Supabase): schema + RLS written and tested (`npm run test:db`); waiting on the project keys in .env, then auth UI.
 
 ## Scripture sources (Phase 3)
 - Structure: `src/data/canon.json` (81 books, 54 OT + 27 NT, committed).
