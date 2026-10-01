@@ -1,4 +1,4 @@
-# Timhirt (ትምህርት, "teaching")
+﻿# Timhirt (á‰µáˆáˆ…áˆ­á‰µ, "teaching")
 
 Ethiopian Orthodox Tewahedo Bible study app. Three modes: **Study**, **Devotion**, **Open**. Offline-first, Amharic + English, synced across devices.
 
@@ -28,8 +28,8 @@ Use the full **81-book Ethiopian Orthodox Tewahedo canon**. Never trim to the 66
 ## Folder structure (target)
 ```
 legacy/        original single-file HTML app (reference only, do not delete)
-app/           Expo Router screens
 src/
+  app/         Expo Router screens (study, devotion, open)
   components/  UI components
   db/          local SQLite + sync outbox
   i18n/        en / am strings
@@ -42,4 +42,4 @@ assets/        fonts, icons
 ```
 
 ## Status
-Phase 0 (foundation) in progress. See the migration plan: Expo scaffold, local data layer, scripture import, Supabase schema + RLS, sync, AI edge function, features, polish.
+Phase 0 (foundation) and Phase 1 (Expo scaffold) done. See the migration plan: Expo scaffold, local data layer, scripture import, Supabase schema + RLS, sync, AI edge function, features, polish.
