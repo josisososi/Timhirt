@@ -44,4 +44,10 @@ assets/        fonts, icons
 ```
 
 ## Status
-Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. See the migration plan: Expo scaffold, local data layer, scripture import, Supabase schema + RLS, sync, AI edge function, features, polish.
+Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. Phase 3 (scripture) in progress.
+
+## Scripture sources (Phase 3)
+- Structure: `src/data/canon.json` (81 books, 54 OT + 27 NT, committed).
+- Text lives in `/data` and `/source-texts` (gitignored, never commit): redistribution rights are unverified. Build with `scripts/build_scripture.py` (English PDF) and `scripts/ocr_amharic.py` + `scripts/build_scripture_am.py` (Amharic).
+- English source: a 2024 compiled ebook; mostly World English Bible wording; Meqabyan is the compiler's own translation.
+- Amharic source: 1962 Amharic Bible (Interlitt electronic edition), 66 books only, read by OCR (unverified). Known gaps: 1 Thessalonians is missing in that PDF (wrong text in its place), some verses merged where OCR dropped a number, Psalm numbering needs checking. Books with no Amharic text show as not available. See the migration plan: Expo scaffold, local data layer, scripture import, Supabase schema + RLS, sync, AI edge function, features, polish.
