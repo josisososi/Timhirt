@@ -34,3 +34,9 @@ desktop.ini
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# Scripture text from sources with unverified redistribution rights. Never commit.
+/data/
+/source-texts/
+*.pdf
+__pycache__/

@@ -1,0 +1,731 @@
+[
+  {
+    "id": "genesis",
+    "canon_order": 1,
+    "testament": "OT",
+    "name_en": "Genesis",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "exodus",
+    "canon_order": 2,
+    "testament": "OT",
+    "name_en": "Exodus",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "leviticus",
+    "canon_order": 3,
+    "testament": "OT",
+    "name_en": "Leviticus",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "numbers",
+    "canon_order": 4,
+    "testament": "OT",
+    "name_en": "Numbers",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "deuteronomy",
+    "canon_order": 5,
+    "testament": "OT",
+    "name_en": "Deuteronomy",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "joshua",
+    "canon_order": 6,
+    "testament": "OT",
+    "name_en": "Joshua",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "judges",
+    "canon_order": 7,
+    "testament": "OT",
+    "name_en": "Judges",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "ruth",
+    "canon_order": 8,
+    "testament": "OT",
+    "name_en": "Ruth",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-samuel",
+    "canon_order": 9,
+    "testament": "OT",
+    "name_en": "1 Samuel",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-samuel",
+    "canon_order": 10,
+    "testament": "OT",
+    "name_en": "2 Samuel",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-kings",
+    "canon_order": 11,
+    "testament": "OT",
+    "name_en": "1 Kings",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-kings",
+    "canon_order": 12,
+    "testament": "OT",
+    "name_en": "2 Kings",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-chronicles",
+    "canon_order": 13,
+    "testament": "OT",
+    "name_en": "1 Chronicles",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-chronicles",
+    "canon_order": 14,
+    "testament": "OT",
+    "name_en": "2 Chronicles",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "jubilees",
+    "canon_order": 15,
+    "testament": "OT",
+    "name_en": "Jubilees",
+    "name_alt": "Kufale",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "enoch",
+    "canon_order": 16,
+    "testament": "OT",
+    "name_en": "Enoch",
+    "name_alt": "Henok",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-ezra",
+    "canon_order": 17,
+    "testament": "OT",
+    "name_en": "1 Ezra",
+    "name_alt": "1 Izra",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "nehemiah",
+    "canon_order": 18,
+    "testament": "OT",
+    "name_en": "Nehemiah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "3-ezra",
+    "canon_order": 19,
+    "testament": "OT",
+    "name_en": "Ezra (Greek Esdras)",
+    "name_alt": "3 Izra",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "4-ezra",
+    "canon_order": 20,
+    "testament": "OT",
+    "name_en": "Ezra Sutuel",
+    "name_alt": "Izra Sutuel",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "tobit",
+    "canon_order": 21,
+    "testament": "OT",
+    "name_en": "Tobit",
+    "name_alt": "Tobit",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "judith",
+    "canon_order": 22,
+    "testament": "OT",
+    "name_en": "Judith",
+    "name_alt": "Judith",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "esther",
+    "canon_order": 23,
+    "testament": "OT",
+    "name_en": "Esther",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-meqabyan",
+    "canon_order": 24,
+    "testament": "OT",
+    "name_en": "1 Meqabyan",
+    "name_alt": "1 Meqabyan",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-meqabyan",
+    "canon_order": 25,
+    "testament": "OT",
+    "name_en": "2 Meqabyan",
+    "name_alt": "2 Meqabyan",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "3-meqabyan",
+    "canon_order": 26,
+    "testament": "OT",
+    "name_en": "3 Meqabyan",
+    "name_alt": "3 Meqabyan",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "job",
+    "canon_order": 27,
+    "testament": "OT",
+    "name_en": "Job",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "psalms",
+    "canon_order": 28,
+    "testament": "OT",
+    "name_en": "Psalms",
+    "name_alt": "Mezmur",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "messale",
+    "canon_order": 29,
+    "testament": "OT",
+    "name_en": "Proverbs (Messale)",
+    "name_alt": "Messale",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "tagsas",
+    "canon_order": 30,
+    "testament": "OT",
+    "name_en": "Proverbs (Tagsas)",
+    "name_alt": "Tagsas",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "wisdom",
+    "canon_order": 31,
+    "testament": "OT",
+    "name_en": "Wisdom of Solomon",
+    "name_alt": "Wisdom of Solomon",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "ecclesiastes",
+    "canon_order": 32,
+    "testament": "OT",
+    "name_en": "Ecclesiastes",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "song-of-songs",
+    "canon_order": 33,
+    "testament": "OT",
+    "name_en": "Song of Songs",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "sirach",
+    "canon_order": 34,
+    "testament": "OT",
+    "name_en": "Sirach",
+    "name_alt": "Wisdom of Sirach",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "isaiah",
+    "canon_order": 35,
+    "testament": "OT",
+    "name_en": "Isaiah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "jeremiah",
+    "canon_order": 36,
+    "testament": "OT",
+    "name_en": "Jeremiah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "baruch",
+    "canon_order": 37,
+    "testament": "OT",
+    "name_en": "Baruch",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "lamentations",
+    "canon_order": 38,
+    "testament": "OT",
+    "name_en": "Lamentations",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "letter-of-jeremiah",
+    "canon_order": 39,
+    "testament": "OT",
+    "name_en": "Letter of Jeremiah",
+    "name_alt": "Terefermias",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "4-baruch",
+    "canon_order": 40,
+    "testament": "OT",
+    "name_en": "4 Baruch",
+    "name_alt": "Teref Baruch",
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "ezekiel",
+    "canon_order": 41,
+    "testament": "OT",
+    "name_en": "Ezekiel",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "daniel",
+    "canon_order": 42,
+    "testament": "OT",
+    "name_en": "Daniel",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "hosea",
+    "canon_order": 43,
+    "testament": "OT",
+    "name_en": "Hosea",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "amos",
+    "canon_order": 44,
+    "testament": "OT",
+    "name_en": "Amos",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "micah",
+    "canon_order": 45,
+    "testament": "OT",
+    "name_en": "Micah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "joel",
+    "canon_order": 46,
+    "testament": "OT",
+    "name_en": "Joel",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "obadiah",
+    "canon_order": 47,
+    "testament": "OT",
+    "name_en": "Obadiah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "jonah",
+    "canon_order": 48,
+    "testament": "OT",
+    "name_en": "Jonah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "nahum",
+    "canon_order": 49,
+    "testament": "OT",
+    "name_en": "Nahum",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "habakkuk",
+    "canon_order": 50,
+    "testament": "OT",
+    "name_en": "Habakkuk",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "zephaniah",
+    "canon_order": 51,
+    "testament": "OT",
+    "name_en": "Zephaniah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "haggai",
+    "canon_order": 52,
+    "testament": "OT",
+    "name_en": "Haggai",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "zechariah",
+    "canon_order": 53,
+    "testament": "OT",
+    "name_en": "Zechariah",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "malachi",
+    "canon_order": 54,
+    "testament": "OT",
+    "name_en": "Malachi",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "matthew",
+    "canon_order": 55,
+    "testament": "NT",
+    "name_en": "Matthew",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "mark",
+    "canon_order": 56,
+    "testament": "NT",
+    "name_en": "Mark",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "luke",
+    "canon_order": 57,
+    "testament": "NT",
+    "name_en": "Luke",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "john",
+    "canon_order": 58,
+    "testament": "NT",
+    "name_en": "John",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "acts",
+    "canon_order": 59,
+    "testament": "NT",
+    "name_en": "Acts",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "romans",
+    "canon_order": 60,
+    "testament": "NT",
+    "name_en": "Romans",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-corinthians",
+    "canon_order": 61,
+    "testament": "NT",
+    "name_en": "1 Corinthians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-corinthians",
+    "canon_order": 62,
+    "testament": "NT",
+    "name_en": "2 Corinthians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "galatians",
+    "canon_order": 63,
+    "testament": "NT",
+    "name_en": "Galatians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "ephesians",
+    "canon_order": 64,
+    "testament": "NT",
+    "name_en": "Ephesians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "philippians",
+    "canon_order": 65,
+    "testament": "NT",
+    "name_en": "Philippians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "colossians",
+    "canon_order": 66,
+    "testament": "NT",
+    "name_en": "Colossians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-thessalonians",
+    "canon_order": 67,
+    "testament": "NT",
+    "name_en": "1 Thessalonians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-thessalonians",
+    "canon_order": 68,
+    "testament": "NT",
+    "name_en": "2 Thessalonians",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-timothy",
+    "canon_order": 69,
+    "testament": "NT",
+    "name_en": "1 Timothy",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-timothy",
+    "canon_order": 70,
+    "testament": "NT",
+    "name_en": "2 Timothy",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "titus",
+    "canon_order": 71,
+    "testament": "NT",
+    "name_en": "Titus",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "philemon",
+    "canon_order": 72,
+    "testament": "NT",
+    "name_en": "Philemon",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "hebrews",
+    "canon_order": 73,
+    "testament": "NT",
+    "name_en": "Hebrews",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "james",
+    "canon_order": 74,
+    "testament": "NT",
+    "name_en": "James",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-peter",
+    "canon_order": 75,
+    "testament": "NT",
+    "name_en": "1 Peter",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-peter",
+    "canon_order": 76,
+    "testament": "NT",
+    "name_en": "2 Peter",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "1-john",
+    "canon_order": 77,
+    "testament": "NT",
+    "name_en": "1 John",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "2-john",
+    "canon_order": 78,
+    "testament": "NT",
+    "name_en": "2 John",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "3-john",
+    "canon_order": 79,
+    "testament": "NT",
+    "name_en": "3 John",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "jude",
+    "canon_order": 80,
+    "testament": "NT",
+    "name_en": "Jude",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  },
+  {
+    "id": "revelation",
+    "canon_order": 81,
+    "testament": "NT",
+    "name_en": "Revelation",
+    "name_alt": null,
+    "name_am": null,
+    "numbering_system": "eotc"
+  }
+]
