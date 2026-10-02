@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 
 import { sendMagicLink, signOut, useAuth } from '@/lib/auth';
 import { supabase } from '@/lib/supabase';
+import { useSync } from '@/sync/SyncProvider';
 import { colors, fonts, spacing } from '@/theme';
 
 type Status =
@@ -15,6 +16,7 @@ type Status =
 export default function AccountScreen() {
   const { t, i18n } = useTranslation();
   const { configured, loading, session } = useAuth();
+  const sync = useSync();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<Status>({ kind: 'idle' });
   const [profileOk, setProfileOk] = useState<boolean | null>(null);
@@ -52,6 +54,34 @@ export default function AccountScreen() {
               {profileOk ? t('account.syncReady') : t('account.profileProblem')}
             </Text>
           )}
+          <View style={styles.syncBox}>
+            <Text style={styles.label}>
+              {sync.status === 'syncing'
+                ? t('sync.syncing')
+                : sync.status === 'ok'
+                  ? t('sync.ok')
+                  : sync.status === 'offline'
+                    ? t('sync.offline')
+                    : sync.status === 'other-account'
+                      ? t('sync.otherAccount')
+                      : ''}
+            </Text>
+            {sync.lastSyncedAt && sync.status !== 'other-account' ? (
+              <Text style={styles.small}>
+                {t('sync.lastSynced', { time: new Date(sync.lastSyncedAt).toLocaleTimeString() })}
+              </Text>
+            ) : null}
+            {sync.pending > 0 && (
+              <Text style={styles.small}>{t('sync.waiting', { count: sync.pending })}</Text>
+            )}
+            <Pressable
+              style={[styles.secondary, sync.status === 'syncing' && styles.disabled]}
+              disabled={sync.status === 'syncing' || sync.status === 'other-account'}
+              onPress={() => sync.syncNow()}
+              accessibilityRole="button">
+              <Text style={styles.secondaryText}>{t('sync.syncNow')}</Text>
+            </Pressable>
+          </View>
           <Pressable style={styles.secondary} onPress={() => signOut()} accessibilityRole="button">
             <Text style={styles.secondaryText}>{t('account.signOut')}</Text>
           </Pressable>
@@ -105,6 +135,7 @@ const styles = StyleSheet.create({
   label: { fontFamily: fonts.uiMedium, fontSize: 11, letterSpacing: 1.4, textTransform: 'uppercase', color: colors.gold },
   email: { fontFamily: fonts.scripture, fontSize: 22, color: colors.mist },
   small: { fontFamily: fonts.ui, fontSize: 12, color: colors.parchmentDim },
+  syncBox: { gap: spacing.sm, paddingTop: spacing.sm, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.goldFaint },
   input: {
     borderWidth: 1,
     borderColor: colors.goldBorder,

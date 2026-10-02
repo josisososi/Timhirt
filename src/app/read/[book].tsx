@@ -1,8 +1,10 @@
-import { Link, useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
+﻿import { Link, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { bookmarks } from '@/db';
+import { useSync } from '@/sync/SyncProvider';
 import {
   availability,
   bookById,
@@ -28,6 +30,27 @@ export default function BookReader() {
   }, [bookId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [chapter, setChapter] = useState(1);
+  const sync = useSync();
+
+  // verse number -> bookmark id, for the chapter on screen
+  const [marks, setMarks] = useState<Record<number, string>>({});
+  const loadMarks = useCallback(async () => {
+    try {
+      const rows = await bookmarks.list({ book_id: String(bookId), chapter });
+      setMarks(Object.fromEntries(rows.map((b) => [b.verse, b.id])));
+    } catch {
+      /* storage not ready */
+    }
+  }, [bookId, chapter]);
+  useEffect(() => {
+    loadMarks();
+  }, [loadMarks, sync.lastSyncedAt]); // reload after a sync brings in bookmarks from another device
+
+  const toggleMark = async (verse: number) => {
+    if (marks[verse]) await bookmarks.remove(marks[verse]);
+    else await bookmarks.create({ book_id: String(bookId), chapter, verse, label: null });
+    loadMarks();
+  };
   const text = data?.[lang] ?? null;
   const chapters = text ? chapterNumbers(text) : [];
   const verses = text?.[String(chapter)] ?? null;
@@ -83,7 +106,19 @@ export default function BookReader() {
           {verses &&
             verseKeys(verses).map((k) => (
               <View key={k} style={styles.verse}>
-                {k !== '0' && <Text style={styles.num}>{k}</Text>}
+                {k !== '0' && (
+                  <Pressable
+                    onPress={() => toggleMark(parseInt(k, 10))}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('reader.bookmark')}
+                    hitSlop={8}
+                    style={styles.numBtn}>
+                    <Text style={[styles.num, marks[parseInt(k, 10)] ? styles.numMarked : null]}>
+                      {marks[parseInt(k, 10)] ? '★ ' : ''}
+                      {k}
+                    </Text>
+                  </Pressable>
+                )}
                 <Text style={[styles.verseText, isAm && styles.ethiopic, k === '0' && styles.psalmTitle]}>
                   {verses[k]}
                 </Text>
@@ -124,7 +159,9 @@ const styles = StyleSheet.create({
   chipTextOn: { color: colors.parchment },
   chapterTitle: { fontFamily: fonts.display, fontSize: 24, color: colors.gold, marginBottom: spacing.md },
   verse: { flexDirection: 'row', gap: spacing.sm, marginBottom: 10 },
-  num: { width: 30, fontFamily: fonts.ui, fontSize: 11, color: colors.gold, paddingTop: 6, textAlign: 'right' },
+  numBtn: { width: 44, paddingTop: 6 },
+  num: { fontFamily: fonts.ui, fontSize: 11, color: colors.gold, textAlign: 'right' },
+  numMarked: { fontFamily: fonts.uiMedium, color: colors.parchment },
   verseText: { flex: 1, fontFamily: fonts.scripture, fontSize: 20, lineHeight: 30, color: colors.mist },
   psalmTitle: { fontStyle: 'italic', color: colors.parchmentDim },
   ethiopic: { fontFamily: fonts.ethiopic, fontSize: 18, lineHeight: 30 },

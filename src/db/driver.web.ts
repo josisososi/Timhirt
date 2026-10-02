@@ -1,4 +1,4 @@
-// Web storage backend: IndexedDB. Works in every browser with no special
+﻿// Web storage backend: IndexedDB. Works in every browser with no special
 // headers (expo-sqlite on web needs SharedArrayBuffer, which Safari/hosting make painful).
 // Native builds use driver.ts (SQLite). Both implement the same Driver interface.
 import type { Driver, Row, SyncedTable } from './types';
@@ -53,8 +53,12 @@ async function tx<T>(
   return result;
 }
 
-const markDirty = (t: IDBTransaction, table: SyncedTable, id: string, now: number) =>
-  wrap(t.objectStore('outbox').put({ table_name: table, row_id: id, queued_at: now }));
+// queued_at must strictly increase per record, so two quick edits never look like one.
+const markDirty = async (t: IDBTransaction, table: SyncedTable, id: string, now: number) => {
+  const store = t.objectStore('outbox');
+  const prev = (await wrap(store.get([table, id]))) as { queued_at: number } | undefined;
+  await wrap(store.put({ table_name: table, row_id: id, queued_at: Math.max(now, (prev?.queued_at ?? 0) + 1) }));
+};
 
 export const driver: Driver = {
   insert: (table, row, now) =>
@@ -99,6 +103,36 @@ export const driver: Driver = {
     }),
 
   dirtyCount: () => tx(['outbox'], 'readonly', (t) => wrap(t.objectStore('outbox').count())),
+
+  dirty: () =>
+    tx(['outbox'], 'readonly', async (t) => {
+      const all = (await wrap(t.objectStore('outbox').getAll())) as {
+        table_name: SyncedTable;
+        row_id: string;
+        queued_at: number;
+      }[];
+      return all
+        .sort((a, b) => a.queued_at - b.queued_at)
+        .map((r) => ({ table: r.table_name, id: r.row_id, queuedAt: r.queued_at }));
+    }),
+
+  getAny: (table, id) =>
+    tx([table], 'readonly', async (t) => {
+      const row = (await wrap(t.objectStore(table).get(id))) as Row | undefined;
+      return row ?? null;
+    }),
+
+  clearDirty: (table, id, queuedAt) =>
+    tx(['outbox'], 'readwrite', async (t) => {
+      const store = t.objectStore('outbox');
+      const entry = (await wrap(store.get([table, id]))) as { queued_at: number } | undefined;
+      if (entry && entry.queued_at === queuedAt) await wrap(store.delete([table, id]));
+    }),
+
+  upsertRemote: (table, row) =>
+    tx([table], 'readwrite', async (t) => {
+      await wrap(t.objectStore(table).put(row));
+    }),
 
   getSetting: (key) =>
     tx(['settings'], 'readonly', async (t) => {

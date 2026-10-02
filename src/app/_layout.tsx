@@ -16,6 +16,7 @@ import { CrossIcon } from '@/components/CrossIcon';
 import { settings } from '@/db';
 import i18n, { type Language } from '@/i18n';
 import { AuthProvider } from '@/lib/auth';
+import { SyncProvider } from '@/sync/SyncProvider';
 import { colors, fonts, spacing } from '@/theme';
 
 SplashScreen.preventAutoHideAsync();
@@ -79,6 +80,7 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
+      <SyncProvider>
       <StatusBar style="light" />
       <Tabs
         initialRouteName="study"
@@ -100,6 +102,7 @@ export default function RootLayout() {
         <Tabs.Screen name="read" options={{ title: t('modes.read') }} />
         <Tabs.Screen name="account" options={{ title: t('modes.account') }} />
       </Tabs>
+      </SyncProvider>
     </AuthProvider>
   );
 }

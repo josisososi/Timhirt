@@ -44,7 +44,7 @@ assets/        fonts, icons
 ```
 
 ## Status
-Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. Phase 3 (scripture reader) done. Phase 4 (Supabase): schema + RLS written and tested (`npm run test:db`); project created, schema applied and verified live (anonymous access blocked). Next: auth UI, then Phase 5 sync.
+Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. Phase 3 (scripture reader) done. Phase 4 (Supabase): schema + RLS written and tested (`npm run test:db`); project created, schema applied and verified live (anonymous access blocked). Magic-link sign-in works. Phase 5 (sync): engine tested (`npm test`), runs automatically while signed in; first synced feature is verse bookmarks in the reader.
 
 ## Scripture sources (Phase 3)
 - Structure: `src/data/canon.json` (81 books, 54 OT + 27 NT, committed).

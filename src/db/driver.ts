@@ -1,4 +1,4 @@
-// Native (iOS/Android) storage backend: SQLite. The web build uses driver.web.ts.
+﻿// Native (iOS/Android) storage backend: SQLite. The web build uses driver.web.ts.
 import type { SQLiteDatabase } from 'expo-sqlite';
 
 import { getDb } from './client';
@@ -12,7 +12,7 @@ async function markDirty(
 ) {
   await db.runAsync(
     `INSERT INTO outbox (table_name, row_id, queued_at) VALUES (?, ?, ?)
-     ON CONFLICT (table_name, row_id) DO UPDATE SET queued_at = excluded.queued_at`,
+     ON CONFLICT (table_name, row_id) DO UPDATE SET queued_at = MAX(excluded.queued_at, outbox.queued_at + 1)`,
     [table, id, now],
   );
 }
@@ -73,6 +73,39 @@ export const driver: Driver = {
     const db = await getDb();
     const row = await db.getFirstAsync<{ n: number }>('SELECT COUNT(*) AS n FROM outbox');
     return row?.n ?? 0;
+  },
+
+  async dirty() {
+    const db = await getDb();
+    const rows = await db.getAllAsync<{ table_name: SyncedTable; row_id: string; queued_at: number }>(
+      'SELECT table_name, row_id, queued_at FROM outbox ORDER BY queued_at ASC',
+    );
+    return rows.map((r) => ({ table: r.table_name, id: r.row_id, queuedAt: r.queued_at }));
+  },
+
+  async getAny(table, id) {
+    const db = await getDb();
+    return db.getFirstAsync<Row>(`SELECT * FROM ${table} WHERE id = ?`, [id]);
+  },
+
+  async clearDirty(table, id, queuedAt) {
+    const db = await getDb();
+    await db.runAsync('DELETE FROM outbox WHERE table_name = ? AND row_id = ? AND queued_at = ?', [
+      table,
+      id,
+      queuedAt,
+    ]);
+  },
+
+  async upsertRemote(table, row) {
+    const db = await getDb();
+    const keys = Object.keys(row);
+    const updates = keys.filter((k) => k !== 'id').map((k) => `${k} = excluded.${k}`);
+    await db.runAsync(
+      `INSERT INTO ${table} (${keys.join(', ')}) VALUES (${keys.map(() => '?').join(', ')})
+       ON CONFLICT (id) DO UPDATE SET ${updates.join(', ')}`,
+      keys.map((k) => row[k]),
+    );
   },
 
   async getSetting(key) {

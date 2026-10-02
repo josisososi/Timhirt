@@ -10,7 +10,9 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
-    "test:db": "node supabase/tests/rls.test.mjs"
+    "test:db": "node supabase/tests/rls.test.mjs",
+    "test:sync": "tsx supabase/tests/sync.test.mts",
+    "test": "npm run test:db && npm run test:sync"
   },
   "dependencies": {
     "@expo-google-fonts/cormorant-garamond": "^0.4.1",
@@ -46,6 +48,7 @@
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",
     "@types/react": "~19.2.2",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3"
   }
 }
