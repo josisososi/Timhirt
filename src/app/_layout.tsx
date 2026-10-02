@@ -15,6 +15,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { CrossIcon } from '@/components/CrossIcon';
 import { settings } from '@/db';
 import i18n, { type Language } from '@/i18n';
+import { AuthProvider } from '@/lib/auth';
 import { colors, fonts, spacing } from '@/theme';
 
 SplashScreen.preventAutoHideAsync();
@@ -77,7 +78,7 @@ export default function RootLayout() {
   if (!ready) return null;
 
   return (
-    <>
+    <AuthProvider>
       <StatusBar style="light" />
       <Tabs
         initialRouteName="study"
@@ -97,8 +98,9 @@ export default function RootLayout() {
         <Tabs.Screen name="devotion" options={{ title: t('modes.devotion') }} />
         <Tabs.Screen name="open" options={{ title: t('modes.open') }} />
         <Tabs.Screen name="read" options={{ title: t('modes.read') }} />
+        <Tabs.Screen name="account" options={{ title: t('modes.account') }} />
       </Tabs>
-    </>
+    </AuthProvider>
   );
 }
 
