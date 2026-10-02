@@ -1,4 +1,4 @@
-import {
+﻿import {
   CormorantGaramond_400Regular,
   CormorantGaramond_600SemiBold,
 } from '@expo-google-fonts/cormorant-garamond';
@@ -89,6 +89,7 @@ export default function RootLayout() {
           headerRight: () => <LanguageToggle />,
           headerStyle: { backgroundColor: colors.ink },
           headerShadowVisible: false,
+          sceneStyle: { backgroundColor: colors.ink },
           tabBarStyle: { backgroundColor: colors.ink, borderTopColor: colors.goldFaint },
           tabBarActiveTintColor: colors.gold,
           tabBarInactiveTintColor: colors.parchmentDim,

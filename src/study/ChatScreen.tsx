@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+﻿import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -150,6 +150,7 @@ export function ChatScreen({ mode }: { mode: Mode }) {
   if (!configured || (!loading && !session)) {
     return (
       <View style={styles.root}>
+        <View style={styles.column}>
         <View style={styles.card}>
           <Text style={[styles.title, isAm && styles.ethiopic]}>{t(`screens.${mode}.title`)}</Text>
           <Text style={[styles.intro, isAm && styles.ethiopic]}>{t(`screens.${mode}.intro`)}</Text>
@@ -160,6 +161,7 @@ export function ChatScreen({ mode }: { mode: Mode }) {
             </Pressable>
           )}
         </View>
+        </View>
       </View>
     );
   }
@@ -169,6 +171,7 @@ export function ChatScreen({ mode }: { mode: Mode }) {
 
   return (
     <View style={styles.root}>
+      <View style={styles.column}>
       <View style={styles.headerRow}>
         <Text style={[styles.title, isAm && styles.ethiopic]}>{t(`screens.${mode}.title`)}</Text>
         {!empty && (
@@ -251,12 +254,14 @@ export function ChatScreen({ mode }: { mode: Mode }) {
           <Text style={styles.sendText}>{t('chat.send')}</Text>
         </Pressable>
       </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: colors.ink, width: '100%', maxWidth: 800, alignSelf: 'center' },
+  root: { flex: 1, backgroundColor: colors.ink },
+  column: { flex: 1, width: '100%', maxWidth: 800, alignSelf: 'center' },
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: spacing.lg, paddingTop: spacing.md },
   title: { fontFamily: fonts.display, fontSize: 28, color: colors.gold },
   scroll: { flex: 1 },

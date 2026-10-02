@@ -38,7 +38,7 @@
     errors: {
       quota: 'You have reached today\'s limit for study conversations. It resets tomorrow.',
       busy: 'The study companion is busy right now. Please try again in a moment.',
-      offline: 'Could not reach the server. Your message is saved here; try again when you are online.',
+      offline: 'Could not reach the study companion. Your message is saved here. Check your connection; if you are online, it may not be switched on yet.',
       failed: 'Something went wrong. Your message is saved; please try again.',
       auth: 'Please sign in again.',
       'not-configured': 'The study companion is not switched on yet.',
