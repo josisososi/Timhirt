@@ -45,6 +45,7 @@ assets/        fonts, icons
 
 ## Status
 Phases 0 (foundation), 1 (Expo scaffold) and 2 (local data layer) done. Phase 3 (scripture reader) done. Phase 4 (Supabase): schema + RLS written and tested (`npm run test:db`); project created, schema applied and verified live (anonymous access blocked). Magic-link sign-in works. Phase 5 (sync): engine tested (`npm test`), runs automatically while signed in; first synced feature is verse bookmarks in the reader.
+Phase 6 (AI study chat): built and tested; needs the Anthropic key set as a Supabase function secret and the function deployed (see supabase/README.md). The AI never writes verse text: it emits [[Book C:V]] tags and the app fills in real text from local scripture data.
 
 ## Scripture sources (Phase 3)
 - Structure: `src/data/canon.json` (81 books, 54 OT + 27 NT, committed).

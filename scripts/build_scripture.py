@@ -1,4 +1,4 @@
-"""Build the 81-book canon list and (optionally) parse scripture text from a PDF.
+﻿"""Build the 81-book canon list and (optionally) parse scripture text from a PDF.
 
 Usage:
     python scripts/build_scripture.py [path/to/bible.pdf]
@@ -224,6 +224,19 @@ EXPECTED_CHAPTERS = {
 }
 
 
+# The name the AI uses when it cites a book, e.g. [[John 3:16]]. Defaults to name_en.
+TAG_NAMES = {
+    "1-ezra": "Ezra",
+    "3-ezra": "3 Ezra",
+    "4-ezra": "4 Ezra",
+    "messale": "Messale",
+    "tagsas": "Tagsas",
+    "wisdom": "Wisdom of Solomon",
+    "song-of-songs": "Song of Songs",
+    "letter-of-jeremiah": "Letter of Jeremiah",
+}
+
+
 def write_canon():
     books = [
         {
@@ -231,6 +244,7 @@ def write_canon():
             "canon_order": i + 1,
             "testament": testament,
             "name_en": name,
+            "tag_name": TAG_NAMES.get(bid, name),
             "name_alt": alt,
             "name_am": None,  # TODO: add verified Amharic names
             "numbering_system": "eotc",

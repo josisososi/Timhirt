@@ -1,5 +1,5 @@
-import { ModeScreen } from '@/components/ModeScreen';
+import { ChatScreen } from '@/study/ChatScreen';
 
 export default function OpenScreen() {
-  return <ModeScreen mode="open" />;
+  return <ChatScreen mode="open" />;
 }

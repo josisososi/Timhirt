@@ -41,3 +41,13 @@ your app URLs (e.g. `http://localhost:8081` for web development).
 ## Testing the rules
 `npm run test:db` applies the migrations to an in-memory Postgres and checks, with two fake
 users, that nobody can read or change anyone else's data. Run it after any schema change.
+
+## 5. The AI study companion (Phase 6)
+The chat calls the `study-chat` Supabase Edge Function, which holds the Anthropic key; the key never ships in the app.
+
+1. Run `supabase/migrations/0003_ai_usage.sql` in the SQL Editor (the daily-limit table and function).
+2. **Edge Functions -> Deploy a new function**, name it `study-chat`, paste the whole of `supabase/functions/study-chat/index.ts` (generated: `npm run build:edge`) and deploy.
+3. **Edge Functions -> Secrets**: add `ANTHROPIC_API_KEY`. Optional secrets: `ANTHROPIC_MODEL` (default `claude-opus-5-5`; `claude-sonnet-5-5` is cheaper) and `AI_DAILY_LIMIT` (requests per account per day, default 60).
+4. If calls fail with "Invalid JWT", turn off **Verify JWT** for the function: the function checks the signed-in user itself.
+
+AI usage is billed by Anthropic per request, so keep a spending limit set in the Anthropic console.

@@ -1,5 +1,5 @@
-import { ModeScreen } from '@/components/ModeScreen';
+import { ChatScreen } from '@/study/ChatScreen';
 
 export default function DevotionScreen() {
-  return <ModeScreen mode="devotion" />;
+  return <ChatScreen mode="devotion" />;
 }

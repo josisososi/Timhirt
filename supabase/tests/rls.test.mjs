@@ -1,4 +1,4 @@
-// Verifies the database schema and row-level security rules against an in-memory
+﻿// Verifies the database schema and row-level security rules against an in-memory
 // Postgres (PGlite), using two fake users. Run: npm run test:db
 //
 // It stubs the small part of Supabase this schema relies on (the auth schema,
@@ -137,6 +137,18 @@ check('users cannot write scripture',
   (await as(A, `update verses set text = 'x'`)).affectedRows === 0 &&
   (await as(A, `delete from verses`)).affectedRows === 0);
 
+// AI daily quota: counted per user, capped, and invisible to everyone else
+const use = async (user, max) => (await as(user, `select public.consume_ai_quota($1) as ok`, [max])).rows[0].ok;
+check('quota allows requests up to the daily limit', (await use(A, 3)) && (await use(A, 3)) && (await use(A, 3)));
+check('quota refuses the next request past the limit', (await use(A, 3)) === false);
+check("one user's usage does not use up another's quota", await use(B, 3));
+check('anonymous users get no quota', await fails(null, `select public.consume_ai_quota(3)`) || (await use(null, 3)) === false);
+check('users cannot read the usage table directly', (await as(A, `select * from ai_usage`)).rows.length === 0);
+check('users cannot reset their own counter',
+  (await as(A, `update ai_usage set count = 0`)).affectedRows === 0 && (await as(A, `delete from ai_usage`)).affectedRows === 0);
+check('the limit still holds after a reset attempt', (await use(A, 3)) === false);
+check('users cannot raise another user\'s count by inserting',
+  await fails(A, `insert into ai_usage (user_id, day, count) values ('${B}', current_date, 99)`));
 // every user-data table has RLS switched on
 const noRls = (await db.query(`
   select c.relname from pg_class c join pg_namespace n on n.oid = c.relnamespace

@@ -4,6 +4,7 @@
     "canon_order": 1,
     "testament": "OT",
     "name_en": "Genesis",
+    "tag_name": "Genesis",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -13,6 +14,7 @@
     "canon_order": 2,
     "testament": "OT",
     "name_en": "Exodus",
+    "tag_name": "Exodus",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -22,6 +24,7 @@
     "canon_order": 3,
     "testament": "OT",
     "name_en": "Leviticus",
+    "tag_name": "Leviticus",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -31,6 +34,7 @@
     "canon_order": 4,
     "testament": "OT",
     "name_en": "Numbers",
+    "tag_name": "Numbers",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -40,6 +44,7 @@
     "canon_order": 5,
     "testament": "OT",
     "name_en": "Deuteronomy",
+    "tag_name": "Deuteronomy",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -49,6 +54,7 @@
     "canon_order": 6,
     "testament": "OT",
     "name_en": "Joshua",
+    "tag_name": "Joshua",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -58,6 +64,7 @@
     "canon_order": 7,
     "testament": "OT",
     "name_en": "Judges",
+    "tag_name": "Judges",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -67,6 +74,7 @@
     "canon_order": 8,
     "testament": "OT",
     "name_en": "Ruth",
+    "tag_name": "Ruth",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -76,6 +84,7 @@
     "canon_order": 9,
     "testament": "OT",
     "name_en": "1 Samuel",
+    "tag_name": "1 Samuel",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -85,6 +94,7 @@
     "canon_order": 10,
     "testament": "OT",
     "name_en": "2 Samuel",
+    "tag_name": "2 Samuel",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -94,6 +104,7 @@
     "canon_order": 11,
     "testament": "OT",
     "name_en": "1 Kings",
+    "tag_name": "1 Kings",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -103,6 +114,7 @@
     "canon_order": 12,
     "testament": "OT",
     "name_en": "2 Kings",
+    "tag_name": "2 Kings",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -112,6 +124,7 @@
     "canon_order": 13,
     "testament": "OT",
     "name_en": "1 Chronicles",
+    "tag_name": "1 Chronicles",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -121,6 +134,7 @@
     "canon_order": 14,
     "testament": "OT",
     "name_en": "2 Chronicles",
+    "tag_name": "2 Chronicles",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -130,6 +144,7 @@
     "canon_order": 15,
     "testament": "OT",
     "name_en": "Jubilees",
+    "tag_name": "Jubilees",
     "name_alt": "Kufale",
     "name_am": null,
     "numbering_system": "eotc"
@@ -139,6 +154,7 @@
     "canon_order": 16,
     "testament": "OT",
     "name_en": "Enoch",
+    "tag_name": "Enoch",
     "name_alt": "Henok",
     "name_am": null,
     "numbering_system": "eotc"
@@ -148,6 +164,7 @@
     "canon_order": 17,
     "testament": "OT",
     "name_en": "1 Ezra",
+    "tag_name": "Ezra",
     "name_alt": "1 Izra",
     "name_am": null,
     "numbering_system": "eotc"
@@ -157,6 +174,7 @@
     "canon_order": 18,
     "testament": "OT",
     "name_en": "Nehemiah",
+    "tag_name": "Nehemiah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -166,6 +184,7 @@
     "canon_order": 19,
     "testament": "OT",
     "name_en": "Ezra (Greek Esdras)",
+    "tag_name": "3 Ezra",
     "name_alt": "3 Izra",
     "name_am": null,
     "numbering_system": "eotc"
@@ -175,6 +194,7 @@
     "canon_order": 20,
     "testament": "OT",
     "name_en": "Ezra Sutuel",
+    "tag_name": "4 Ezra",
     "name_alt": "Izra Sutuel",
     "name_am": null,
     "numbering_system": "eotc"
@@ -184,6 +204,7 @@
     "canon_order": 21,
     "testament": "OT",
     "name_en": "Tobit",
+    "tag_name": "Tobit",
     "name_alt": "Tobit",
     "name_am": null,
     "numbering_system": "eotc"
@@ -193,6 +214,7 @@
     "canon_order": 22,
     "testament": "OT",
     "name_en": "Judith",
+    "tag_name": "Judith",
     "name_alt": "Judith",
     "name_am": null,
     "numbering_system": "eotc"
@@ -202,6 +224,7 @@
     "canon_order": 23,
     "testament": "OT",
     "name_en": "Esther",
+    "tag_name": "Esther",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -211,6 +234,7 @@
     "canon_order": 24,
     "testament": "OT",
     "name_en": "1 Meqabyan",
+    "tag_name": "1 Meqabyan",
     "name_alt": "1 Meqabyan",
     "name_am": null,
     "numbering_system": "eotc"
@@ -220,6 +244,7 @@
     "canon_order": 25,
     "testament": "OT",
     "name_en": "2 Meqabyan",
+    "tag_name": "2 Meqabyan",
     "name_alt": "2 Meqabyan",
     "name_am": null,
     "numbering_system": "eotc"
@@ -229,6 +254,7 @@
     "canon_order": 26,
     "testament": "OT",
     "name_en": "3 Meqabyan",
+    "tag_name": "3 Meqabyan",
     "name_alt": "3 Meqabyan",
     "name_am": null,
     "numbering_system": "eotc"
@@ -238,6 +264,7 @@
     "canon_order": 27,
     "testament": "OT",
     "name_en": "Job",
+    "tag_name": "Job",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -247,6 +274,7 @@
     "canon_order": 28,
     "testament": "OT",
     "name_en": "Psalms",
+    "tag_name": "Psalms",
     "name_alt": "Mezmur",
     "name_am": null,
     "numbering_system": "eotc"
@@ -256,6 +284,7 @@
     "canon_order": 29,
     "testament": "OT",
     "name_en": "Proverbs (Messale)",
+    "tag_name": "Messale",
     "name_alt": "Messale",
     "name_am": null,
     "numbering_system": "eotc"
@@ -265,6 +294,7 @@
     "canon_order": 30,
     "testament": "OT",
     "name_en": "Proverbs (Tagsas)",
+    "tag_name": "Tagsas",
     "name_alt": "Tagsas",
     "name_am": null,
     "numbering_system": "eotc"
@@ -274,6 +304,7 @@
     "canon_order": 31,
     "testament": "OT",
     "name_en": "Wisdom of Solomon",
+    "tag_name": "Wisdom of Solomon",
     "name_alt": "Wisdom of Solomon",
     "name_am": null,
     "numbering_system": "eotc"
@@ -283,6 +314,7 @@
     "canon_order": 32,
     "testament": "OT",
     "name_en": "Ecclesiastes",
+    "tag_name": "Ecclesiastes",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -292,6 +324,7 @@
     "canon_order": 33,
     "testament": "OT",
     "name_en": "Song of Songs",
+    "tag_name": "Song of Songs",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -301,6 +334,7 @@
     "canon_order": 34,
     "testament": "OT",
     "name_en": "Sirach",
+    "tag_name": "Sirach",
     "name_alt": "Wisdom of Sirach",
     "name_am": null,
     "numbering_system": "eotc"
@@ -310,6 +344,7 @@
     "canon_order": 35,
     "testament": "OT",
     "name_en": "Isaiah",
+    "tag_name": "Isaiah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -319,6 +354,7 @@
     "canon_order": 36,
     "testament": "OT",
     "name_en": "Jeremiah",
+    "tag_name": "Jeremiah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -328,6 +364,7 @@
     "canon_order": 37,
     "testament": "OT",
     "name_en": "Baruch",
+    "tag_name": "Baruch",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -337,6 +374,7 @@
     "canon_order": 38,
     "testament": "OT",
     "name_en": "Lamentations",
+    "tag_name": "Lamentations",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -346,6 +384,7 @@
     "canon_order": 39,
     "testament": "OT",
     "name_en": "Letter of Jeremiah",
+    "tag_name": "Letter of Jeremiah",
     "name_alt": "Terefermias",
     "name_am": null,
     "numbering_system": "eotc"
@@ -355,6 +394,7 @@
     "canon_order": 40,
     "testament": "OT",
     "name_en": "4 Baruch",
+    "tag_name": "4 Baruch",
     "name_alt": "Teref Baruch",
     "name_am": null,
     "numbering_system": "eotc"
@@ -364,6 +404,7 @@
     "canon_order": 41,
     "testament": "OT",
     "name_en": "Ezekiel",
+    "tag_name": "Ezekiel",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -373,6 +414,7 @@
     "canon_order": 42,
     "testament": "OT",
     "name_en": "Daniel",
+    "tag_name": "Daniel",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -382,6 +424,7 @@
     "canon_order": 43,
     "testament": "OT",
     "name_en": "Hosea",
+    "tag_name": "Hosea",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -391,6 +434,7 @@
     "canon_order": 44,
     "testament": "OT",
     "name_en": "Amos",
+    "tag_name": "Amos",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -400,6 +444,7 @@
     "canon_order": 45,
     "testament": "OT",
     "name_en": "Micah",
+    "tag_name": "Micah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -409,6 +454,7 @@
     "canon_order": 46,
     "testament": "OT",
     "name_en": "Joel",
+    "tag_name": "Joel",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -418,6 +464,7 @@
     "canon_order": 47,
     "testament": "OT",
     "name_en": "Obadiah",
+    "tag_name": "Obadiah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -427,6 +474,7 @@
     "canon_order": 48,
     "testament": "OT",
     "name_en": "Jonah",
+    "tag_name": "Jonah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -436,6 +484,7 @@
     "canon_order": 49,
     "testament": "OT",
     "name_en": "Nahum",
+    "tag_name": "Nahum",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -445,6 +494,7 @@
     "canon_order": 50,
     "testament": "OT",
     "name_en": "Habakkuk",
+    "tag_name": "Habakkuk",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -454,6 +504,7 @@
     "canon_order": 51,
     "testament": "OT",
     "name_en": "Zephaniah",
+    "tag_name": "Zephaniah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -463,6 +514,7 @@
     "canon_order": 52,
     "testament": "OT",
     "name_en": "Haggai",
+    "tag_name": "Haggai",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -472,6 +524,7 @@
     "canon_order": 53,
     "testament": "OT",
     "name_en": "Zechariah",
+    "tag_name": "Zechariah",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -481,6 +534,7 @@
     "canon_order": 54,
     "testament": "OT",
     "name_en": "Malachi",
+    "tag_name": "Malachi",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -490,6 +544,7 @@
     "canon_order": 55,
     "testament": "NT",
     "name_en": "Matthew",
+    "tag_name": "Matthew",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -499,6 +554,7 @@
     "canon_order": 56,
     "testament": "NT",
     "name_en": "Mark",
+    "tag_name": "Mark",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -508,6 +564,7 @@
     "canon_order": 57,
     "testament": "NT",
     "name_en": "Luke",
+    "tag_name": "Luke",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -517,6 +574,7 @@
     "canon_order": 58,
     "testament": "NT",
     "name_en": "John",
+    "tag_name": "John",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -526,6 +584,7 @@
     "canon_order": 59,
     "testament": "NT",
     "name_en": "Acts",
+    "tag_name": "Acts",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -535,6 +594,7 @@
     "canon_order": 60,
     "testament": "NT",
     "name_en": "Romans",
+    "tag_name": "Romans",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -544,6 +604,7 @@
     "canon_order": 61,
     "testament": "NT",
     "name_en": "1 Corinthians",
+    "tag_name": "1 Corinthians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -553,6 +614,7 @@
     "canon_order": 62,
     "testament": "NT",
     "name_en": "2 Corinthians",
+    "tag_name": "2 Corinthians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -562,6 +624,7 @@
     "canon_order": 63,
     "testament": "NT",
     "name_en": "Galatians",
+    "tag_name": "Galatians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -571,6 +634,7 @@
     "canon_order": 64,
     "testament": "NT",
     "name_en": "Ephesians",
+    "tag_name": "Ephesians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -580,6 +644,7 @@
     "canon_order": 65,
     "testament": "NT",
     "name_en": "Philippians",
+    "tag_name": "Philippians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -589,6 +654,7 @@
     "canon_order": 66,
     "testament": "NT",
     "name_en": "Colossians",
+    "tag_name": "Colossians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -598,6 +664,7 @@
     "canon_order": 67,
     "testament": "NT",
     "name_en": "1 Thessalonians",
+    "tag_name": "1 Thessalonians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -607,6 +674,7 @@
     "canon_order": 68,
     "testament": "NT",
     "name_en": "2 Thessalonians",
+    "tag_name": "2 Thessalonians",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -616,6 +684,7 @@
     "canon_order": 69,
     "testament": "NT",
     "name_en": "1 Timothy",
+    "tag_name": "1 Timothy",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -625,6 +694,7 @@
     "canon_order": 70,
     "testament": "NT",
     "name_en": "2 Timothy",
+    "tag_name": "2 Timothy",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -634,6 +704,7 @@
     "canon_order": 71,
     "testament": "NT",
     "name_en": "Titus",
+    "tag_name": "Titus",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -643,6 +714,7 @@
     "canon_order": 72,
     "testament": "NT",
     "name_en": "Philemon",
+    "tag_name": "Philemon",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -652,6 +724,7 @@
     "canon_order": 73,
     "testament": "NT",
     "name_en": "Hebrews",
+    "tag_name": "Hebrews",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -661,6 +734,7 @@
     "canon_order": 74,
     "testament": "NT",
     "name_en": "James",
+    "tag_name": "James",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -670,6 +744,7 @@
     "canon_order": 75,
     "testament": "NT",
     "name_en": "1 Peter",
+    "tag_name": "1 Peter",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -679,6 +754,7 @@
     "canon_order": 76,
     "testament": "NT",
     "name_en": "2 Peter",
+    "tag_name": "2 Peter",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -688,6 +764,7 @@
     "canon_order": 77,
     "testament": "NT",
     "name_en": "1 John",
+    "tag_name": "1 John",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -697,6 +774,7 @@
     "canon_order": 78,
     "testament": "NT",
     "name_en": "2 John",
+    "tag_name": "2 John",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -706,6 +784,7 @@
     "canon_order": 79,
     "testament": "NT",
     "name_en": "3 John",
+    "tag_name": "3 John",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -715,6 +794,7 @@
     "canon_order": 80,
     "testament": "NT",
     "name_en": "Jude",
+    "tag_name": "Jude",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
@@ -724,6 +804,7 @@
     "canon_order": 81,
     "testament": "NT",
     "name_en": "Revelation",
+    "tag_name": "Revelation",
     "name_alt": null,
     "name_am": null,
     "numbering_system": "eotc"
